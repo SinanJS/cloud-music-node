@@ -3,11 +3,6 @@ node_modules
 
 .tmp
 .sass-cache
-app/bower_components/*
-
-!app/bower_components/easyui
-__tempfiles
-
 
 .DS_Store
 node_modules
