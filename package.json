@@ -1,0 +1,23 @@
+{
+  "name": "cloud-music-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SinanJS/cloud-music-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SinanJS/cloud-music-node/issues"
+  },
+  "homepage": "https://github.com/SinanJS/cloud-music-node#readme"
+}
