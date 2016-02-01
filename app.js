@@ -4,8 +4,16 @@ var search = require('./lib/controllers/search')
 var app = express();
 app.get('/search', function (req, res) {
     console.log(req.query);
+
     search.createRequest(req.query, function (data) {
-        res.write(data);
+
+        res.format({
+            'application/json': function () {
+                res.send({
+                    body: data
+                });
+            }
+        });
     });
 });
 
