@@ -5,15 +5,11 @@ var app = express();
 app.get('/search', function (req, res) {
     console.log(req.query);
 
-    search.createRequest(req.query, function (data) {
-
-        res.format({
-            'application/json': function () {
-                res.send({
-                    body: data
-                });
-            }
-        });
+    search.createRequest(req.query, function (sres) {
+            sres.pipe(res);
+            sres.on('end', function () {
+                console.log(sres.header);
+            });
     });
 });
 
