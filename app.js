@@ -30,3 +30,36 @@ var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('Example app listening at http://%s:%s', host, port);
 });
+///sql 测试
+var mysql = require('mysql');
+
+var TEST_DATABASE = 'cloud_music_db';
+var TEST_TABLE = 'user_tb';
+
+//创建连接
+var client = mysql.createConnection({
+    host:'localhost',
+    port:3306,
+    user: 'root',
+    password: '123456'
+});
+
+client.connect();
+client.query("use " + TEST_DATABASE);
+client.query(
+  'SELECT * FROM '+TEST_TABLE,
+  function selectCb(err, results, fields) {
+    if (err) {
+      throw err;
+    }
+      if(results)
+      {
+          //console.log(results[0].user_id);
+          for(var i = 0; i < results.length; i++)
+          {
+              console.log("%d\t%s\t%s", results[i].user_id, results[i].nick_name, results[i].phone);
+          }
+      }
+    client.end();
+  }
+);
