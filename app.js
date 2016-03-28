@@ -39,14 +39,18 @@ app.get('/search', function (req, res) {
 
 var identity=new Login(client);
 app.get('/login',function(req,res){
-    identity.login(req.query,res);
+    try {
+        identity.login(req.query,res);
+    }catch (e){
+        throw e;
+    }
+
 });
 
 app.get('/logout',function(req,res){
     identity.logout(req.query.user_id,res);
 });
 app.get('/sign_in',function(req,res){
-    console.log(req.query);
     identity.signIn(req.query,res);
 });
 
