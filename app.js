@@ -30,15 +30,18 @@ app.all('*',function (req, res, next) {
   }
 });
 app.get('/search', function (req, res) {
-    console.log(req.query);
     search.createRequest(req.query, function (sres) {
             sres.pipe(res);
             sres.on('end', function () {
-                console.log(sres.header);
+                //console.log(sres.header);
             });
     });
 });
-
+app.get('/song',function(req,res){
+    search.getSong(req.query, function (sres) {
+        sres.pipe(res);
+    });
+});
 var identity=new Login(client);
 app.get('/login',function(req,res){
     try {
