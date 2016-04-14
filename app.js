@@ -42,6 +42,11 @@ app.get('/song',function(req,res){
         sres.pipe(res);
     });
 });
+app.get('/lyric',function(req,res){
+    search.getLyric(req.query,function(sres){
+        sres.pipe(res);
+    })
+});
 var identity=new Login(client);
 app.get('/login',function(req,res){
     try {
