@@ -47,6 +47,16 @@ app.get('/lyric',function(req,res){
         sres.pipe(res);
     })
 });
+app.get('/artist',function(req,res){
+    search.getArtist(req.query,function(sres){
+        sres.pipe(res);
+    });
+});
+app.get('/album',function(){
+    search.getAlbum(req.query,function(sres){
+        sres.pipe(res);
+    });
+});
 var identity=new Login(client);
 app.get('/login',function(req,res){
     try {
