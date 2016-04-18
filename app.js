@@ -1,6 +1,7 @@
 var express = require('express');
 var search = require('./lib/controllers/search');
 var Login=require('./lib/controllers/identity');
+var chat=require('./lib/controllers/chat');
 var app = express();
 var mysql = require('mysql');
 
@@ -72,6 +73,10 @@ app.get('/logout',function(req,res){
 });
 app.get('/sign_in',function(req,res){
     identity.signIn(req.query,res);
+});
+
+app.use('/chat',function(req,res){
+    chat.init();
 });
 
 var server = app.listen(3000, function () {
