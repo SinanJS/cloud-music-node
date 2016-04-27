@@ -53,8 +53,13 @@ app.get('/artist',function(req,res){
         sres.pipe(res);
     });
 });
-app.get('/album',function(){
+app.get('/album',function(req,res){
     search.getAlbum(req.query,function(sres){
+        sres.pipe(res);
+    });
+});
+app.use('/intro',function(req,res){
+    search.getIntro(req.query,function(sres){
         sres.pipe(res);
     });
 });
