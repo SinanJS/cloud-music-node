@@ -4,6 +4,7 @@ var Login=require('./lib/controllers/identity');
 var chat=require('./lib/controllers/chat');
 var app = express();
 var mysql = require('mysql');
+var songList=require('./lib/controllers/songlist');
 
 
 //创建连接
@@ -82,6 +83,14 @@ app.get('/sign_in',function(req,res){
 
 app.use('/chat',function(req,res){
     chat.init();
+});
+
+var songList=new songList(client);
+app.use('/get_song_list',function(req,res){
+    songList.getList(req.query.user_id,res);
+});
+app.use('/add_song_list',function(req,res){
+    songList.insertData(req.query,res);
 });
 
 var server = app.listen(3000, function () {
