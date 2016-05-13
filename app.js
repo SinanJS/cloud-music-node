@@ -89,6 +89,12 @@ var songList=new songList(client);
 app.use('/get_song_list',function(req,res){
     songList.getList(req.query.user_id,res);
 });
+app.use('/sl_song',function(req,res){
+    songList.getSong(req.query.id,res);
+});
+app.use('/sl_detail',function(req,res){
+    songList.getSLDetail(req.query.id,res);
+});
 app.use('/add_song_list',function(req,res){
     songList.insertData(req.query,res);
 });
