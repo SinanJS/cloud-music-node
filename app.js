@@ -4,6 +4,7 @@ var Login=require('./lib/controllers/identity');
 var chat=require('./lib/controllers/chat');
 var app = express();
 var mysql = require('mysql');
+var Comment=require('./lib/controllers/comment');
 var songList=require('./lib/controllers/songlist');
 
 
@@ -98,29 +99,19 @@ app.use('/sl_detail',function(req,res){
 app.use('/add_song_list',function(req,res){
     songList.insertData(req.query,res);
 });
+app.use('/delete_song',function(req,res){
+    songList.deleteData(req.query,res);
+});
 
-var server = app.listen(3000, function () {
+var comment=new Comment(client);
+app.use('/get_comment',function(req,res){
+    comment.getComments(req.query.song_id,res);
+});
+app.use('/set_comment',function(req,res){
+    comment.setComments(req.query,res);
+});
+var server = app.listen(3001, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log('Example app listening at http://%s:%s', host, port);
 });
-
-
-/*client.query("use " + TEST_DATABASE);
- client.query(
- 'SELECT * FROM '+TEST_TABLE,
- function selectCb(err, results, fields) {
- if (err) {
- throw err;
- }
- if(results)
- {
- //console.log(results[0].user_id);
- for(var i = 0; i < results.length; i++)
- {
- console.log("%d\t%s\t%s", results[i].user_id, results[i].nick_name, results[i].phone);
- }
- }
- client.end();
- }
- );*/
